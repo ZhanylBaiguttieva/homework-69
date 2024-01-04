@@ -1,6 +1,7 @@
 import {SearchMovies} from "../types";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {fetchSearchMovies} from "./moviesThunks";
+import {RootState} from "../app/store";
 
 export interface MovieState {
     searchMovies: SearchMovies[];
@@ -31,3 +32,5 @@ export const moviesSlice = createSlice({
 });
 
 export const movieReducer = moviesSlice.reducer;
+
+export const selectMoviesList = (state: RootState) => state.movies.searchMovies;

@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {useAppDispatch} from "../app/hooks";
 import {fetchSearchMovies} from "../store/moviesThunks";
+import MovieList from "./MovieList";
 
 const Form = () => {
     const dispatch = useAppDispatch();
@@ -12,10 +13,10 @@ const Form = () => {
         setValue(name);
     };
     return (
-        <div>
-            <form className="d-flex col-3" role="search">
+        <div className="d-flex flex-column col-4 m-4">
+            <form className="d-flex" role="search">
                 <input
-                    className="form-control me-2"
+                    className="form-control m-2"
                     type="search"
                     placeholder="search"
                     aria-label="Search"
@@ -23,6 +24,7 @@ const Form = () => {
                     onChange={(e) => onChangeInput(e.target.value)}
                 />
             </form>
+            <MovieList searchData={value}/>
         </div>
     );
 };
