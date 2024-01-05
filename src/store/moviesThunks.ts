@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {ApiSearchMovies, SearchMovies} from "../types";
+import {ApiSearchMovies, Movie, SearchMovies} from "../types";
 import axiosApi from "../axiosApi";
 
 export const fetchSearchMovies = createAsyncThunk<SearchMovies[], string>(
@@ -18,5 +18,18 @@ export const fetchSearchMovies = createAsyncThunk<SearchMovies[], string>(
            });
         }
         return searchMovies;
+    }
+);
+
+export const fetchMovie = createAsyncThunk<Movie | null, string>(
+    'movies/fetchMovie',
+    async (movieName) => {
+        const response = await axiosApi.get<Movie>('shows/' + movieName);
+        const movieData = response.data;
+
+        if(!movieData) {
+            return null;
+        }
+        return movieData;
     }
 );

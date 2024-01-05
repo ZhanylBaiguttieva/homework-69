@@ -15,7 +15,9 @@ function App() {
         </header>
         <main>
             <Routes>
-                <Route path='/' element={<Home/>}></Route>
+                <Route path='/' element={<Home/>}>
+                    <Route path='/shows/:id' element={<NotFound/>}></Route>
+                </Route>
                 <Route path='*' element={<NotFound/>}></Route>
             </Routes>
         </main>
