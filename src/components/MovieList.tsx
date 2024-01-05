@@ -15,8 +15,10 @@ const MovieList: React.FC<Props> = ({searchData}) => {
             {movieList && searchData && (
                 <div className="m-2">
                     <ul className="list-group">
-                        {movieList.map(movie => (
-                            <NavLink to={'shows/' + movie.id}>{movie.name}</NavLink>
+                        {movieList.map((movie, index) => (
+                            <li className="list-group-item" aria-disabled="true" key={index}>
+                                <NavLink to={'/shows/' + movie.id}>{movie.name}</NavLink>
+                            </li>
                         ))}
                     </ul>
                 </div>
