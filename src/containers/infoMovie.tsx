@@ -1,14 +1,16 @@
 import {useAppDispatch, useAppSelector} from "../app/hooks";
-import {selectMovie} from "../store/movieSlice";
+import {selectFetchMovieLoading, selectMovie} from "../store/movieSlice";
 import {useParams} from "react-router-dom";
 import {useEffect} from "react";
 import {fetchMovie} from "../store/moviesThunks";
+import Spinner from "../components/Spinner";
 
 
 const InfoMovie = () => {
     const movie = useAppSelector(selectMovie);
     const {id} = useParams() as {id:string};
     const dispatch = useAppDispatch();
+    const movieLoading = useAppSelector(selectFetchMovieLoading);
 
     useEffect(() => {
         dispatch(fetchMovie(id));
@@ -17,7 +19,7 @@ const InfoMovie = () => {
     const movieHTML: {__html: string | TrustedHTML} | undefined = {__html: movie? movie.summary : ''};
     return (
         <>
-            {movie && (
+            {movieLoading ? <Spinner/> : movie && (
                 <div className="d-flex m-5">
                     <div>
                         {movie.image ? (<img src={movie.image?.medium} alt="img"/>) :

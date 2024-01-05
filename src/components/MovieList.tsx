@@ -1,18 +1,19 @@
 
 import {useAppSelector} from "../app/hooks";
-import {selectMoviesList} from "../store/movieSlice";
+import {selectFetchLoading, selectMoviesList} from "../store/movieSlice";
 import {NavLink} from "react-router-dom";
 import React from "react";
+import Spinner from "./Spinner";
 
 interface Props {
     searchData: string;
 }
 const MovieList: React.FC<Props> = ({searchData}) => {
-
+    const moviesLoading = useAppSelector(selectFetchLoading);
     const movieList = useAppSelector(selectMoviesList);
     return (
         <>
-            {movieList && searchData && (
+            {moviesLoading ? <Spinner/> : movieList && searchData && (
                 <div className="m-2">
                     <ul className="list-group">
                         {movieList.map((movie, index) => (

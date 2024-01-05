@@ -48,5 +48,9 @@ export const moviesSlice = createSlice({
 
 export const movieReducer = moviesSlice.reducer;
 
+
 export const selectMoviesList = (state: RootState) => state.movies.searchMovies;
 export const selectMovie = (state: RootState) => state.movies.movie;
+
+export const selectFetchLoading = (state: RootState) => state.movies.fetchSearchLoading;
+export const selectFetchMovieLoading = (state: RootState) => state.movies.fetchMovieLoading;
